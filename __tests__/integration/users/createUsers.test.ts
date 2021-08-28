@@ -35,8 +35,6 @@ describe('Create User', () => {
 
     const userTwo = await request(app).post('/users').send(data)
 
-    console.log(userTwo.body)
-
     expect(userTwo.status).toBe(400)
     expect(userTwo.body).toHaveProperty('error')
     expect(userTwo.body).toHaveProperty('keys')

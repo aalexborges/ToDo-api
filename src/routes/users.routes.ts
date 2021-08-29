@@ -5,8 +5,8 @@ import CreateUserController from '../controllers/users/CreateUserController'
 
 const createUser = new CreateUserController()
 
-const userRoutes = Router()
+const usersRoutes = Router()
 
-userRoutes.post('/', createUser.handle)
+usersRoutes.post('/', createUser.handle)
 
-export default userRoutes
+export default usersRoutes

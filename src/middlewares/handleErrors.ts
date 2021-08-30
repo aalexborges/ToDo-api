@@ -4,6 +4,7 @@ import { ErrorRequestHandler } from 'express'
 import AlreadyExist from '../errors/AlreadyExists'
 import AuthenticateError from '../errors/AuthenticateError'
 import RefreshTokenError from '../errors/RefreshTokenError'
+import NotFound from '../errors/NotFound'
 
 interface ValidationErrors {
   [key: string]: string[]
@@ -36,6 +37,9 @@ const handleErrors: ErrorRequestHandler = (error, req, res, next) => {
 
   if (error instanceof RefreshTokenError)
     return res.status(401).json({ error: error.message })
+
+  if (error instanceof NotFound)
+    return res.status(error.status).json({ error: error.message })
 
   console.log(error)
   return res.status(500).json({ error: 'Internal server error' })

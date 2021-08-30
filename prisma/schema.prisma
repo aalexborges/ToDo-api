@@ -11,14 +11,14 @@ generator client {
 }
 
 model User {
-  id           String        @id @default(uuid())
+  id           String         @id @default(uuid())
   name         String
-  email        String        @unique
+  email        String         @unique
   password     String
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
   toDos        ToDo[]
-  refreshToken RefreshToken?
+  refreshToken RefreshToken[]
 
   @@map("users")
 }

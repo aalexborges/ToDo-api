@@ -20,7 +20,7 @@ class AuthenticateUserService {
 
     if (!passwordMatch) throw new AuthenticateError()
 
-    await prisma.refreshToken.deleteMany({ where: { id: userExists.id } })
+    await prisma.refreshToken.deleteMany({ where: { userId: userExists.id } })
 
     const refreshToken = await new Token().refreshToken(userExists.id)
     const token = await new Token().session(userExists.id)

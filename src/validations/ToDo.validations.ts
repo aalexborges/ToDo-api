@@ -24,7 +24,7 @@ class ToDoValidations {
       userId: Yup.string().required().uuid().trim(),
     })
 
-    await schema.validate({ id, userId }, { abortEarly: true })
+    await schema.validate({ id, userId }, { abortEarly: false })
   }
 }
 

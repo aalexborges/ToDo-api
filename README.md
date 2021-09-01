@@ -49,7 +49,7 @@ Responsável por criar um novo usuário, retornando um JSON.
           "name": ["name is a required field"],
           "email": ["email is a required field"],
           "password": ["password is a required field"]
-        },
+        }
       }
       ```
 
@@ -61,6 +61,68 @@ Responsável por criar um novo usuário, retornando um JSON.
         "keys": ["email"]
       }
       ```
+
+## Sessões
+
+**Criar uma nova sessão - Login**
+----
+
+Retorna um JSON contendo o token da sessão e o refresh token.
+
+* **URL:**
+
+  `/sessions`
+
+* **Método:**
+
+  `POST`
+
+* **Dados do Body:**
+
+  ```ts
+  {
+    email: { type: String, required: true },
+    password: { type: String, required: true, min: 8, max: 16 }
+  }
+  ```
+
+* **Resposta de Sucesso:**
+
+  * **Code:** 200 <br />
+  * **Conteúdo:**
+
+    ```json
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzA1MjI3NTQsImV4cCI6MTYzMDUyMzY1NCwic3ViIjoiNTU2NjU5NzQtNmU0Ny00NzYyLWE2NzMtYWI4ZmI3ZTMyOWM4In0.0T1_T-jL_KSicTrX4ptV7u2TbrOgFcCqgBoNpGykLxc",
+      "refreshToken": {
+        "id": "87d81ff5-3016-4300-8a5c-d78f6eb58bbe",
+        "expiresIn": 1630524158336
+      }
+    }
+    ```
+
+* **Resposta de Erro:**
+
+  * **Code:** 400 BAD REQUEST <br />
+  * **Conteúdo:**
+
+    ```json
+    {
+      "error": "Validation fails",
+      "keys": ["email", "password"],
+      "errors": {
+        "email": ["email is a required field"],
+        "password": ["password is a required field"]
+      }
+    }
+    ```
+
+  * **Code:** 401 UNAUTHORIZED <br />
+  * **Conteúdo:**
+
+    ```json
+    { "error": "Email or password invalid" }
+    ```
 
 ## ToDos
 

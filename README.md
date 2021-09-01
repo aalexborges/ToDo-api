@@ -124,6 +124,74 @@ Retorna um JSON contendo o token da sessão e o refresh token.
     { "error": "Email or password invalid" }
     ```
 
+**Refresh Token**
+----
+
+Retorna um JSON contendo o novo token.
+
+* **URL:**
+
+  `/sessions/refreshToken`
+
+* **Método:**
+
+  `POST`
+
+* **Dados do Body:**
+
+  ```ts
+  {
+    refreshToken: { type: String, required: true, uuid: true },
+  }
+  ```
+
+* **Resposta de Sucesso:**
+
+  * **Code:** 200 <br />
+  * **Conteúdo:**
+
+    * **Resposta 1:**
+
+      ```json
+      {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzA1MjI3NTQsImV4cCI6MTYzMDUyMzY1NCwic3ViIjoiNTU2NjU5NzQtNmU0Ny00NzYyLWE2NzMtYWI4ZmI3ZTMyOWM4In0.0T1_T-jL_KSicTrX4ptV7u2TbrOgFcCqgBoNpGykLxc"
+      }
+      ```
+
+    * **Resposta 2:**
+
+      ```json
+      {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MzA1MjI3NTQsImV4cCI6MTYzMDUyMzY1NCwic3ViIjoiNTU2NjU5NzQtNmU0Ny00NzYyLWE2NzMtYWI4ZmI3ZTMyOWM4In0.0T1_T-jL_KSicTrX4ptV7u2TbrOgFcCqgBoNpGykLxc",
+        "refreshToken": {
+          "id": "87d81ff5-3016-4300-8a5c-d78f6eb58bbe",
+          "expiresIn": 1630524158336
+        }
+      }
+      ```
+
+* **Resposta de Erro:**
+
+  * **Code:** 400 BAD REQUEST <br />
+  * **Conteúdo:**
+
+    ```json
+    {
+      "error": "Validation fails",
+      "keys": ["refreshToken"],
+      "errors": {
+        "refreshToken": ["refreshToken is a required field"]
+      }
+    }
+    ```
+
+  * **Code:** 401 UNAUTHORIZED <br />
+  * **Conteúdo:**
+
+    ```json
+    { "error": "Refresh token invalid" }
+    ```
+
 ## ToDos
 
 **Obter ToDos**

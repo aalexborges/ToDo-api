@@ -142,3 +142,80 @@ Retornar um JSON contendo os dados do ToDo criado.
       ```json
       { "error": "User not found" }
       ```
+
+**Deletar um ToDo**
+----
+
+Responsável por deletar um ToDo, retornando um JSON com uma mensagem caso seja deletado com sucesso.
+
+* **URL:**
+
+  `/toDos/:id`
+
+* **Método:**
+
+  `DELETE`
+
+* **Parâmetros de URL**
+
+   ```ts
+   { id: { type: String, required: true } }
+   ```
+
+* **Parâmetros do HEADER:**
+
+  **Required:**
+
+  `Authorization` - Informa o tipo (Bearer) e o token
+
+* **Resposta de Sucesso:**
+
+  * **Code:** 200 <br />
+  * **Conteúdo:**
+
+    ```json
+    { "message": "ToDo has been deleted" }
+    ```
+
+* **Resposta de Erro:**
+
+  * **Code:** 400 BAD REQUEST <br />
+  * **Conteúdo:**
+
+    ```json
+    {
+      "error": "Validation fails",
+      "keys": ["id"],
+      "errors": {
+        "id": ["id must be a valid UUID"]
+      },
+    }
+    ```
+
+  * **Code:** 401 UNAUTHORIZED <br />
+  * **Conteúdo:**
+
+    * **Resposta 1:**
+
+      ```json
+      { "error": "Token not provider" }
+      ```
+
+    * **Resposta 2:**
+
+      ```json
+      { "error": "Malformed token" }
+      ```
+
+    * **Resposta 3:**
+
+      ```json
+      { "error": "Token error" }
+      ```
+
+  * **Code:** 404 NOT FOUND <br />
+  * **Conteúdo:**
+
+    ```json
+    { "error": "ToDo not found" }
+    ```

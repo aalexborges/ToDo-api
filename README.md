@@ -1,5 +1,69 @@
 # API - Simple ToDo
 
+## Usuários
+
+**Criar novo usuário**
+----
+
+Responsável por criar um novo usuário, retornando um JSON.
+
+* **URL:**
+
+  `/users`
+
+* **Método:**
+
+  ``POST`
+
+* **Dados do Body:**
+
+  ```ts
+  {
+    name: { type: String, required: true, min: 2 },
+    email: { type: String, required: true },
+    password: { type: String, required: true, min: 8, max: 16 }
+  }
+  ```
+
+* **Resposta de Sucesso:**
+
+  * **Code:** 201 <br />
+  * **Conteúdo:**
+
+    ```json
+    { "message": "User created successfully" }
+    ```
+
+* **Resposta de Error:**
+
+  * **Code:** 400 BAD REQUEST <br />
+  * **Conteúdo:**
+
+    * **Resposta 1:**
+
+      ```json
+      {
+        "error": "Validation fails",
+        "keys": ["name", "email", "password"],
+        "errors": {
+          "name": ["name is a required field"],
+          "email": ["email is a required field"],
+          "password": ["password is a required field"]
+        },
+      }
+      ```
+
+    * **Resposta 2:**
+
+      ```json
+      {
+        "error": "User already exists",
+        "keys": ["email"]
+      }
+      ```
+
+## ToDos
+
 **Obter ToDos**
 ----
 

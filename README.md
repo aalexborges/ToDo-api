@@ -13,7 +13,7 @@ Responsável por criar um novo usuário, retornando um JSON.
 
 * **Método:**
 
-  ``POST`
+  `POST`
 
 * **Dados do Body:**
 

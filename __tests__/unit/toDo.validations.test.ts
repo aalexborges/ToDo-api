@@ -17,6 +17,23 @@ describe('Test create validation', () => {
   })
 })
 
+describe('Test update validation', () => {
+  it('should return an error when the data is invalid', async () => {
+    const data = { completed: 'test', task: true }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await expect(ToDoValidations.update(data as any)).rejects.toBeInstanceOf(
+      ValidationError
+    )
+  })
+
+  it('should return undefined when data is valid', async () => {
+    const data = { completed: true, task: 'test' }
+
+    await expect(ToDoValidations.update(data)).resolves.toBeUndefined()
+  })
+})
+
 describe('Test delete validation', () => {
   it('should return an error when the data is invalid', async () => {
     await expect(ToDoValidations.delete({})).rejects.toBeInstanceOf(

@@ -5,6 +5,7 @@ interface VCreateToDoData {
 }
 
 interface VUpdateToDoData {
+  id?: string
   task?: string
   completed?: boolean
 }
@@ -23,13 +24,14 @@ class ToDoValidations {
     await schema.validate({ task }, { abortEarly: false })
   }
 
-  static async update({ completed, task }: VUpdateToDoData) {
+  static async update({ id, completed, task }: VUpdateToDoData) {
     const schema = Yup.object().shape({
+      id: Yup.string().required().uuid().trim(),
       task: Yup.string().notRequired().trim(),
       completed: Yup.boolean().notRequired(),
     })
 
-    await schema.validate({ completed, task }, { abortEarly: false })
+    await schema.validate({ id, completed, task }, { abortEarly: false })
   }
 
   static async delete({ id, userId }: VDeleteToDoData) {

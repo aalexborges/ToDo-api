@@ -337,6 +337,95 @@ Retornar um JSON contendo os dados do ToDo criado.
       { "error": "User not found" }
       ```
 
+**Atualizar um ToDo**
+----
+
+Responsável por atualizar as informação de um ToDo, retornando um JSON.
+
+* **URL:**
+
+  `/toDos`
+
+* **Método:**
+
+  `PUT`
+
+* **Dados do Body:**
+
+  ```ts
+  {
+    id: { type: String, required: true, uuid: true },
+    task: { type: String, required: false },
+    completed: { type: Boolean, required: false }
+  }
+  ```
+
+* **Parâmetros do HEADER:**
+
+  **Required:**
+
+  `Authorization` - Informa o tipo (Bearer) e o token
+
+* **Resposta de Sucesso:**
+
+  * **Code:** 200 <br />
+  * **Conteúdo:**
+
+    ```json
+    {
+      "message": "ToDo updated successfully",
+      "data": {
+        "id": "4fe7afed-6d8a-44f8-a29a-124b9b7dd3cc",
+        "task": "Minha tarefa",
+        "completed": true,
+        "createdAt": 1630519332386
+      }
+    }
+    ```
+
+* **Resposta de Erro:**
+
+  * **Code:** 400 BAD REQUEST <br />
+  * **Conteúdo:**
+
+    ```json
+    {
+      "error": "Validation fails",
+      "keys": ["id"],
+      "errors": {
+        "id": ["id is a required field"]
+      },
+    }
+    ```
+
+  * **Code:** 401 UNAUTHORIZED <br />
+  * **Conteúdo:**
+
+    * **Resposta 1:**
+
+      ```json
+      { "error": "Token not provider" }
+      ```
+
+    * **Resposta 2:**
+
+      ```json
+      { "error": "Malformed token" }
+      ```
+
+    * **Resposta 3:**
+
+      ```json
+      { "error": "Token error" }
+      ```
+
+  * **Code:** 404 NOT FOUND <br />
+  * **Conteúdo:**
+
+    ```json
+    { "error": "ToDo not found" }
+    ```
+
 **Deletar um ToDo**
 ----
 

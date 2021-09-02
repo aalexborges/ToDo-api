@@ -1,6 +1,88 @@
 # API - Simple ToDo
 
+A API Simple ToDo gerencia um lista de To-Dos individuais de cada usuário.
+
+Foi criada com o pacote Express + Node.js, usando TypeScript e abrange conceitos como criação de usuário, token de sessão e refresh token, relacionamentos no banco de dados e outros.
+
+## Sumario
+
+* [Desenvolvimento](#desenvolvimento)
+* [Testes](#testes)
+* [Usuários](#usuários)
+* [Sessões](#sessões)
+* [ToDos](#todos)
+
+<br />
+
+## Desenvolvimento
+
+Antes de começar a desenvolver, alguns passos devem ser seguidos.
+
+* **Passo 1:** Variáveis de ambiente <br />
+
+  Para desenvolver um arquivo .env deve ser criado, o conteúdo do arquivo é o mesmo do .env.example, basta copiar e colar, alterando apenas os valores das chaves/propriedades.
+
+* **Passo 2:** Executando as migrations <br />
+
+  Para executar as migrations, basta executar no terminal, o comando:
+
+  * **NPM/NPX:**
+
+    ```bash
+    npx prisma migrate dev
+    ```
+
+  * **Yarn:**
+
+    ```bash
+    yarn prisma migrate dev
+    ```
+
+* **Passo 3:** Executando a aplicação <br />
+
+  Para executar a aplicação, basta executar no terminal, o comando:
+
+  * **NPM:**
+
+    ```bash
+    npm run dev
+    ```
+
+  * **Yarn:**
+
+    ```bash
+    yarn dev
+    ```
+
+## Testes
+
+Os testes foram criados usando o pacote Jest e outros.
+
+Para executa-los basta seguir os passos abaixo:
+
+* **Passo 1:** Variáveis de ambiente <br />
+
+  Para rodar os teste um arquivo `.env.test`, o conteúdo do arquivo é o mesmo do `.env.example`, basta copiar e colar, alterando apenas os valores das chaves/propriedades.
+
+* **Passo 2:** Executando os testes <br />
+
+  Para executa os teste basta rodar o script:
+
+  * **NPM:** <br />
+
+    ```bash
+    npm run test
+    ```
+
+  * **Yarn:** <br />
+
+    ```bash
+    yarn test
+    ```
+
 ## Usuários
+
+* [Criar novo usuário](#criar-novo-usuário)
 
 **Criar novo usuário**
 ----
@@ -63,6 +145,9 @@ Responsável por criar um novo usuário, retornando um JSON.
       ```
 
 ## Sessões
+
+* [Criar uma nova sessão - Login](#criar-uma-nova-sessão---login)
+* [Refresh Token](#refresh-token)
 
 **Criar uma nova sessão - Login**
 ----
@@ -193,6 +278,11 @@ Retorna um JSON contendo o novo token.
     ```
 
 ## ToDos
+
+* [Obter ToDos](#obter-todos)
+* [Criar um novo ToDo](#criar-um-novo-todo)
+* [Atualizar um ToDo](#atualizar-um-todo)
+* [Deletar um ToDo](#deletar-um-todo)
 
 **Obter ToDos**
 ----

@@ -1,5 +1,11 @@
 # API - Simple ToDo
 
+<p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/AlexBorgesDev/api-simple-to-do" />
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/AlexBorgesDev/api-simple-to-do" />
+  <img alt="GitHub" src="https://img.shields.io/github/license/AlexBorgesDev/api-simple-to-do" />
+</p>
+
 A API Simple ToDo gerencia um lista de To-Dos individuais de cada usuário.
 
 Foi criada com o pacote Express + Node.js, usando TypeScript e abrange conceitos como criação de usuário, token de sessão e refresh token, relacionamentos no banco de dados e outros.
@@ -12,15 +18,13 @@ Foi criada com o pacote Express + Node.js, usando TypeScript e abrange conceitos
 * [Sessões](#sessões)
 * [ToDos](#todos)
 
-<br />
-
 ## Desenvolvimento
 
 Antes de começar a desenvolver, alguns passos devem ser seguidos.
 
 * **Passo 1:** Variáveis de ambiente <br />
 
-  Para desenvolver um arquivo .env deve ser criado, o conteúdo do arquivo é o mesmo do .env.example, basta copiar e colar, alterando apenas os valores das chaves/propriedades.
+  Para desenvolver um arquivo `.env` deve ser criado, o conteúdo do arquivo é o mesmo do `.env.example`, basta copiar e colar, alterando apenas os valores das chaves/propriedades.
 
 * **Passo 2:** Executando as migrations <br />
 
@@ -62,7 +66,7 @@ Para executa-los basta seguir os passos abaixo:
 
 * **Passo 1:** Variáveis de ambiente <br />
 
-  Para rodar os teste um arquivo `.env.test`, o conteúdo do arquivo é o mesmo do `.env.example`, basta copiar e colar, alterando apenas os valores das chaves/propriedades.
+  Para rodar os teste, um arquivo `.env.test` deve ser criado, o conteúdo do arquivo é o mesmo do `.env.example`, basta copiar e colar, alterando apenas os valores das chaves/propriedades.
 
 * **Passo 2:** Executando os testes <br />
 

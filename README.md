@@ -24,7 +24,7 @@ Antes de começar a desenvolver, alguns passos devem ser seguidos.
 
 * **Passo 1:** Variáveis de ambiente <br />
 
-  Para desenvolver um arquivo `.env` deve ser criado, o conteúdo do arquivo é o mesmo do `.env.example`, basta copiar e colar, alterando apenas os valores das chaves/propriedades.
+  Para desenvolver, um arquivo `.env` deve ser criado, o conteúdo do arquivo é o mesmo do `.env.example`, basta copiar e colar, alterando apenas os valores das chaves/propriedades.
 
 * **Passo 2:** Executando as migrations <br />
 

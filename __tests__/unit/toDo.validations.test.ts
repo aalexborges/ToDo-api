@@ -28,7 +28,7 @@ describe('Test update validation', () => {
   })
 
   it('should return undefined when data is valid', async () => {
-    const data = { completed: true, task: 'test' }
+    const data = { id: uuid(), completed: true, task: 'test' }
 
     await expect(ToDoValidations.update(data)).resolves.toBeUndefined()
   })

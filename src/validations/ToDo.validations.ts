@@ -1,16 +1,21 @@
 import * as Yup from 'yup'
 
-interface VCreateToDoDate {
+interface VCreateToDoData {
   task?: string
 }
 
-interface VDeleteToDoDate {
+interface VUpdateToDoData {
+  task?: string
+  completed?: boolean
+}
+
+interface VDeleteToDoData {
   id?: string
   userId?: string
 }
 
 class ToDoValidations {
-  static async create({ task }: VCreateToDoDate) {
+  static async create({ task }: VCreateToDoData) {
     const schema = Yup.object().shape({
       task: Yup.string().required().trim(),
     })
@@ -18,7 +23,16 @@ class ToDoValidations {
     await schema.validate({ task }, { abortEarly: false })
   }
 
-  static async delete({ id, userId }: VDeleteToDoDate) {
+  static async update({ completed, task }: VUpdateToDoData) {
+    const schema = Yup.object().shape({
+      task: Yup.string().notRequired().trim(),
+      completed: Yup.boolean().notRequired(),
+    })
+
+    await schema.validate({ completed, task }, { abortEarly: false })
+  }
+
+  static async delete({ id, userId }: VDeleteToDoData) {
     const schema = Yup.object().shape({
       id: Yup.string().required().uuid().trim(),
       userId: Yup.string().required().uuid().trim(),

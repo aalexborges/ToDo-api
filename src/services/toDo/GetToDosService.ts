@@ -11,6 +11,7 @@ class GetToDosService {
         createdAt: true,
         updatedAt: true,
       },
+      orderBy: { createdAt: 'asc' },
     })
 
     return toDos

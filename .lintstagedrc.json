@@ -1,0 +1,7 @@
+{
+  "src/**/*.{js,ts}": "eslint . --ext js,ts --fix",
+  "__tests__/**/*.{js,ts}": [
+    "eslint . --ext js,ts --fix",
+    "jest --passWithNoTests"
+  ]
+}

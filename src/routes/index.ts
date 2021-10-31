@@ -1,13 +1,13 @@
 import { Router } from 'express'
 
-import usersRoutes from './users.routes'
-import sessionsRoutes from './sessions.routes'
-import toDosRoutes from './toDos.routes'
+import { userRoutes } from './userRoutes'
+import { toDoRoutes } from './toDoRoutes'
+import { sessionRoutes } from './sessionRoutes'
 
-const routes = Router()
+const router = Router()
 
-routes.use('/users', usersRoutes)
-routes.use('/sessions', sessionsRoutes)
-routes.use('/toDos', toDosRoutes)
+router.use('/users', userRoutes)
+router.use('/toDos', toDoRoutes)
+router.use('/session', sessionRoutes)
 
-export default routes
+export { router }

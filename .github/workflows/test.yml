@@ -1,40 +1,37 @@
 name: Test
-on: push
+
+on: ['push', 'pull_request']
 
 jobs:
-  test:
+  code:
+    name: Test code
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:13.3
-        env:
-          POSTGRES_USER: prisma
-          POSTGRES_PASSWORD: prisma
-          POSTGRES_DB: to_do_test
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
-
     env:
-      JWT_SECRET_KEY: cfdcd15a-27a3-4ce8-a78d-328c170c0591
-      DATABASE_URL: postgresql://prisma:prisma@localhost:5432/to_do_test?schema=public
+      JWT_SECRET: 01f6a48f4e3b0b9936f9939e98ae1d3906d7b22d
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - name: Check out repository code
+      - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
 
       - name: Install dependencies
-        run: yarn
+        uses: bahmutov/npm-install@v1
 
-      - name: Run test
-        run: yarn test --coverage
+      - name: Run migrations
+        run: yarn prisma migrate deploy
+
+      - name: Run Jest
+        run: yarn test --coverage --passWithNoTests
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

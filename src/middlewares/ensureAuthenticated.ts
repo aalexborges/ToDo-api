@@ -1,25 +1,26 @@
+import { Request, Response, NextFunction } from 'express'
 import { verify } from 'jsonwebtoken'
-import { NextFunction, Request, Response } from 'express'
+
+interface IPayload {
+  sub: string
+}
 
 function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
   const authToken = req.headers.authorization
 
-  if (!authToken) return res.status(401).json({ error: 'Token not provider' })
+  if (!authToken) return res.status(401).json({ errorCode: 'token.invalid' })
 
-  const [schema, token] = authToken.split(' ')
-
-  if (!/^Bearer$/i.test(schema))
-    return res.status(401).json({ error: 'Malformed token' })
+  const [, token] = authToken.split(' ')
 
   try {
-    const { sub } = verify(token, <string>process.env.JWT_SECRET_KEY)
+    const { sub } = verify(token, process.env.JWT_SECRET) as IPayload
 
-    req.userId = sub as string
+    req.userId = sub
 
     return next()
   } catch (err) {
-    return res.status(401).json({ error: 'Token error' })
+    return res.status(401).json({ errorCode: 'token.expired' })
   }
 }
 
-export default ensureAuthenticated
+export { ensureAuthenticated }

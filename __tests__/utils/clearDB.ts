@@ -1,13 +1,17 @@
-import prisma from '../../src/prisma/prisma'
+import prismaClient from '../../src/prisma'
 
-async function clearDB(notDisconnect?: boolean) {
-  const deleteToDos = prisma.toDo.deleteMany()
-  const deleteRefreshToken = prisma.refreshToken.deleteMany()
-  const deleteUsers = prisma.user.deleteMany()
+async function clearDB() {
+  console.log('👾  Cleaning database')
 
-  await prisma.$transaction([deleteToDos, deleteRefreshToken, deleteUsers])
+  await prismaClient.$transaction([
+    prismaClient.toDo.deleteMany(),
+    prismaClient.user.deleteMany(),
+  ])
 
-  if (!notDisconnect) await prisma.$disconnect()
+  console.log('✔ Database has been cleaned')
+
+  await prismaClient.$disconnect()
+  console.log('✔ Database has been disconnected')
 }
 
-export default clearDB
+clearDB()

@@ -1,48 +1,51 @@
 import { ValidationError } from 'yup'
 import { ErrorRequestHandler } from 'express'
 
-import AlreadyExist from '../errors/AlreadyExists'
-import AuthenticateError from '../errors/AuthenticateError'
-import RefreshTokenError from '../errors/RefreshTokenError'
-import NotFound from '../errors/NotFound'
+// Custom errors
+import { AlreadyExistError } from '../errors/AlreadyExistError'
+import { NotFoundError } from '../errors/NotFoundError'
+import { SessionError } from '../errors/SessionError'
+import { UnauthorizedActionError } from '../errors/UnauthorizedActionError'
 
-interface ValidationErrors {
-  [key: string]: string[]
-}
-
-const handleErrors: ErrorRequestHandler = (error, req, res, next) => {
+// The next parameter must be declared even if it is not being used
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const handleErrors: ErrorRequestHandler = (error, _req, res, _next) => {
   if (error instanceof ValidationError) {
-    const errors: ValidationErrors = {}
+    const errors: { [key: string]: string[] } = {}
 
-    error.inner.forEach(err => {
-      err.path && (errors[err.path] = err.errors)
-    })
+    error.inner.forEach(err => err.path && (errors[err.path] = err.errors))
 
-    return res.status(400).json({
-      error: 'Validation fails',
-      keys: error.inner.map(err => err.path),
-      errors,
-    })
-  }
-
-  if (error instanceof AlreadyExist) {
     return res
-      .status(error.status)
-      .json({ error: error.message, keys: error.keys })
+      .status(400)
+      .json({ error: 'Validation fails', errors, code: 'data.invalid' })
   }
 
-  if (error instanceof AuthenticateError) {
-    return res.status(401).json({ error: error.message })
+  if (error instanceof AlreadyExistError) {
+    const { errorCode, identifier, message } = error as AlreadyExistError
+
+    return res.status(400).json({ error: message, identifier, errorCode })
   }
 
-  if (error instanceof RefreshTokenError)
-    return res.status(401).json({ error: error.message })
+  if (error instanceof NotFoundError) {
+    const { description, errorCode, message } = error as NotFoundError
 
-  if (error instanceof NotFound)
-    return res.status(error.status).json({ error: error.message })
+    return res.status(404).json({ error: message, description, errorCode })
+  }
+
+  if (error instanceof SessionError) {
+    const { description, errorCode, message } = error as SessionError
+
+    return res.status(401).json({ error: message, description, errorCode })
+  }
+
+  if (error instanceof UnauthorizedActionError) {
+    const { description, errorCode, message } = error as UnauthorizedActionError
+
+    return res.status(401).json({ error: message, description, errorCode })
+  }
 
   console.log(error)
   return res.status(500).json({ error: 'Internal server error' })
 }
 
-export default handleErrors
+export { handleErrors }

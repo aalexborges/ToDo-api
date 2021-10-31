@@ -1,45 +1,30 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
+datasource db {
+  provider = "sqlite"
+  url      = "file:./database.db"
+}
+
 model User {
-  id           String         @id @default(uuid())
-  name         String
-  email        String         @unique
-  password     String
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  toDos        ToDo[]
-  refreshToken RefreshToken[]
+  id       String @id @unique @default(uuid())
+  name     String
+  email    String @unique
+  password String
+  toDos    ToDo[]
 
   @@map("users")
 }
 
 model ToDo {
-  id        String   @id @default(uuid())
-  task      String
-  completed Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  userId    String
-  User      User     @relation(fields: [userId], references: [id])
+  id          String    @id @unique @default(uuid())
+  task        String
+  completed   Boolean   @default(false)
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
 
-  @@map("to_do")
-}
-
-model RefreshToken {
-  id        String @id @default(uuid())
-  expiresIn Int
-  userId    String
-  user      User   @relation(fields: [userId], references: [id])
-
-  @@map("refresh_token")
+  @@map("to_dos")
 }

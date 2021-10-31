@@ -15,7 +15,16 @@ class CreateToDoService {
       })
     }
 
-    const toDo = await prismaClient.toDo.create({ data: { task, userId } })
+    const toDo = await prismaClient.toDo.create({
+      data: { task, userId },
+      select: {
+        id: true,
+        task: true,
+        completed: true,
+        completedAt: true,
+        createdAt: true,
+      },
+    })
 
     return toDo
   }

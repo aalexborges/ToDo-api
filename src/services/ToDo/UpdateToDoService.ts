@@ -29,6 +29,13 @@ class UpdateToDoService {
         completed,
         completedAt: completed ? new Date() : undefined,
       },
+      select: {
+        id: true,
+        task: true,
+        completed: true,
+        completedAt: true,
+        createdAt: true,
+      },
     })
 
     return updatedToDo

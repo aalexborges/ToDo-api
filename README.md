@@ -50,6 +50,7 @@ $ npx run test --coverage
 All API routes:
 
 * **USER**
+  * [Get a user](#get-a-user)
   * [Create a new user](#create-a-new-user)
   * [Delete a user](#delete-a-user)
 
@@ -62,6 +63,37 @@ All API routes:
   * [Create a new ToDo](#create-a-new-todo)
   * [Update a ToDo](#update-a-todo)
   * [Delete a ToDo](#delete-a-todo)
+
+### Get a user
+
+* **URL:** `/user`
+
+* **Method:** `GET`
+
+* **Success Response:** <br />
+
+  * **Code:** `200 OK`
+  * **Content:** <br />
+
+    ```json
+    {
+      "name": "Example User",
+      "email": "user@email.com"
+    }
+    ```
+
+* **ErrorResponse:** <br />
+
+  * **Code:** `401 UNAUTHORIZED`
+  * **Content:** <br />
+
+    ```json
+    {
+      "error": "Session Error",
+      "description": "Invalid token",
+      "errorCode": "token.invalid",
+    }
+    ```
 
 ### Create a new user
 

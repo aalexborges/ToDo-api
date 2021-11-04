@@ -70,6 +70,12 @@ All API routes:
 
 * **Method:** `GET`
 
+* **Headers:** <br />
+
+  ```json
+  { "Authorization": "Bearer <Your token>" }
+  ```
+
 * **Success Response:** <br />
 
   * **Code:** `200 OK`

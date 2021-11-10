@@ -1,10 +1,10 @@
 {
-  "name": "toDo-api",
+  "name": "ToDo-api",
   "version": "1.0.3",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "node ./dist/core/server.js",
+    "start": "node ./dist/src/core/server.js",
     "dev": "tsnd --respawn --exit-child --transpile-only ./src/core/server.ts",
     "test": "jest",
     "posttest": "ts-node ./__tests__/utils/clearDB.ts",

@@ -3,10 +3,10 @@
 </p>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/AlexBorgesDev/toDo-api.svg" />
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/AlexBorgesDev/toDo-api.svg" />
-  <img alt="Package License" src="https://img.shields.io/github/license/alexborgesdev/toDo-api.svg" />
-  <a href='https://coveralls.io/github/AlexBorgesDev/toDo-api?branch=main'><img src='https://coveralls.io/repos/github/AlexBorgesDev/toDo-api/badge.svg?branch=main' alt='Coverage Status' /></a>
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/AlexBorgesDev/ToDo-api.svg" />
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/AlexBorgesDev/ToDo-api.svg" />
+  <img alt="Package License" src="https://img.shields.io/github/license/alexborgesdev/ToDo-api.svg" />
+  <a href='https://coveralls.io/github/AlexBorgesDev/ToDo-api?branch=main'><img src='https://coveralls.io/repos/github/AlexBorgesDev/ToDo-api/badge.svg?branch=main' alt='Coverage Status' /></a>
 </p>
 
 ## Description

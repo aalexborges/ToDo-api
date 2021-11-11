@@ -11,7 +11,7 @@
 
 ## Description
 
-A RestFull API, made with Express.js and Typescript. In it you can create a user and create, update, delete and get your own ToDos, having everything stored in an SQL database.
+A RestFul API made in Typescript using the Express library, and the Prism ORM library to make all calls to the SQL database. In it you can create your own user, keeping all your ToDos private, with authentication being done through a JWT token.
 
 ## Installation
 
